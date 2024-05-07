@@ -4,11 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './mock-data';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskTableComponent } from './components/task-table/task-table.component';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     declarations: [
@@ -19,9 +20,10 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1000 })
+        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1000 }),
+        RouterModule.forRoot([]),
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]

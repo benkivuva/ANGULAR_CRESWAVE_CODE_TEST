@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<header>
+  <h1>{{ title }}</h1>
+  <nav>
+    <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
+    <a routerLink="/tasks/new" routerLinkActive="active">Add Task</a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <p>&copy; 2024 Ben Task Management App</p>
+</footer>

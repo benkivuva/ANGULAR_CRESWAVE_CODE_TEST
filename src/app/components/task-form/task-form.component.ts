@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../task.service';
-import { Task } from '../task.model';
+import { Task } from '../../task.model';
 
 @Component({
   selector: 'app-task-form',

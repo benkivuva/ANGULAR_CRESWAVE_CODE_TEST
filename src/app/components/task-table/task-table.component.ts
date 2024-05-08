@@ -1,6 +1,8 @@
+// task-table.component.ts
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../task.service';
 import { Task } from '../../task.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-table',
@@ -11,7 +13,7 @@ export class TaskTableComponent implements OnInit {
   tasks: Task[] = [];
   displayedColumns: string[] = ['title', 'description', 'status', 'actions'];
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadTasks();
@@ -24,10 +26,20 @@ export class TaskTableComponent implements OnInit {
   }
 
   editTask(task: Task): void {
-    // Implement edit task functionality
+    // Navigate to the task form for editing
+    this.router.navigate(['/tasks', task.id]);
   }
 
   deleteTask(task: Task): void {
-    // Implement delete task functionality
+    if (task.id) {
+      if (confirm('Are you sure you want to delete this task?')) {
+        this.taskService.deleteTask(task.id).subscribe(() => {
+          // Remove the task from the list
+          this.tasks = this.tasks.filter(t => t.id !== task.id);
+        });
+      }
+    } else {
+      console.error('Task id is undefined.');
+    }
   }
 }

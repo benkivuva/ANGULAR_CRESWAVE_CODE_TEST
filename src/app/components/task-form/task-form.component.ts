@@ -1,6 +1,5 @@
 // task-form.component.ts
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { Task } from '../../task.model';
@@ -11,18 +10,24 @@ import { Task } from '../../task.model';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
-  @Input() task: Task = { title: '', description: '', status: 'Incomplete' };
+  @Input() task: Task | null = null;
 
   constructor(private router: Router, private taskService: TaskService) { }
 
   ngOnInit(): void {
+    if (this.task) {
+      // populate
+    }
   }
 
   onSubmit(): void {
-    if (this.task.title.trim() && this.task.description.trim()) {
-      this.taskService.addTask(this.task).subscribe(() => {
+    if (this.task) {
+      // If a task is provided, update it
+      this.taskService.updateTask(this.task).subscribe(() => {
         this.router.navigate(['/tasks']);
       });
+    } else {
+      console.error('Task is null. Cannot submit.');
     }
   }
 }

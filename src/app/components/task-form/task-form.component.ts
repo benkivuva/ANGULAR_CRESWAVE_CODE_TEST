@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { Task } from '../../task.model';
@@ -10,7 +9,7 @@ import { Task } from '../../task.model';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
-  @Input() task: Task | null = { title: '', description: '', status: 'Incomplete' };
+  @Input() task: Task | null = null;
 
   constructor(private router: Router, private taskService: TaskService) { }
 
@@ -25,6 +24,24 @@ export class TaskFormComponent implements OnInit {
       this.taskService.addTask(this.task).subscribe(() => {
         this.router.navigate(['/tasks']);
       });
+    }
+  }
+
+  updateTitle(newTitle: string): void {
+    if (this.task) {
+      this.task.title = newTitle;
+    }
+  }
+
+  updateDescription(newDescription: string): void {
+    if (this.task) {
+      this.task.description = newDescription;
+    }
+  }
+
+  updateStatus(newStatus: boolean): void {
+    if (this.task) {
+      this.task.status = newStatus ? 'Complete' : 'Incomplete';
     }
   }
 }

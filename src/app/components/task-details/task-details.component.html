@@ -1,9 +1,13 @@
 <!-- task-details.component.html -->
 <div *ngIf="task">
-    <h2>{{ task.title }}</h2>
-    <p>{{ task.description }}</p>
-    <p>Status: {{ task.status }}</p>
-    <button mat-button (click)="toggleStatus()">{{ task.status === 'Complete' ? 'Mark Incomplete' : 'Mark Complete'
-        }}</button>
-    <button mat-button (click)="editTask()">Edit</button>
+    <input type="text" [(ngModel)]="task.title" placeholder="Title" /><br>
+    <textarea [(ngModel)]="task.description" placeholder="Description"></textarea><br>
+    <select [(ngModel)]="task.status">
+        <option value="Incomplete">Incomplete</option>
+        <option value="Complete">Complete</option>
+    </select><br>
+    <button mat-button (click)="toggleStatus()">
+        {{ task.status === 'Complete' ? 'Mark Incomplete' : 'Mark Complete' }}
+    </button>
+    <button mat-button (click)="saveChanges()">Save Changes</button>
 </div>

@@ -1,3 +1,5 @@
+// task-details.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../task.service';
@@ -40,6 +42,14 @@ export class TaskDetailsComponent implements OnInit {
   editTask(): void {
     if (this.task) {
       this.router.navigate(['/tasks', this.task.id, 'edit']);
+    }
+  }
+
+  saveChanges(): void {
+    if (this.task) {
+      this.taskService.updateTask(this.task).subscribe(() => {
+        // Task updated successfully
+      });
     }
   }
 }

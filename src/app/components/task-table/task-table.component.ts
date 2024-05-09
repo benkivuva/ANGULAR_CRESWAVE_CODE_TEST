@@ -31,11 +31,8 @@ export class TaskTableComponent implements OnInit {
       data: { task }
     });
 
-    dialogRef.componentInstance.taskSaved.subscribe((savedTask: Task) => {
-      const index = this.tasks.findIndex(t => t.id === savedTask.id);
-      if (index !== -1) {
-        this.tasks[index] = savedTask;
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadTasks();
     });
   }
 

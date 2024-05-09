@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TaskEditDialogModule } from './components/task-edit-dialog/task-edit-dialog.module';
+import { TaskAddComponent } from './components/task-add/task-add.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { TaskEditDialogModule } from './components/task-edit-dialog/task-edit-di
         MatIconModule,
         MatTableModule,
         MatFormFieldModule,
-        TaskEditDialogModule
+        TaskEditDialogModule,
+        TaskAddComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,8 +1,8 @@
-// task-table.component.ts
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../task.service';
 import { Task } from '../../task.model';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskEditDialogComponent } from '../task-edit-dialog/task-edit-dialog.component';
 
 @Component({
   selector: 'app-task-table',
@@ -13,7 +13,7 @@ export class TaskTableComponent implements OnInit {
   tasks: Task[] = [];
   displayedColumns: string[] = ['title', 'description', 'status', 'actions'];
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadTasks();
@@ -25,9 +25,21 @@ export class TaskTableComponent implements OnInit {
     });
   }
 
-  editTask(task: Task): void {
-    // Navigate to the task form for editing
-    this.router.navigate(['/tasks', task.id]);
+  openEditDialog(task: Task): void {
+    const dialogRef = this.dialog.open(TaskEditDialogComponent, {
+      width: '400px',
+      data: { task }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Update the task if changes were made
+        const index = this.tasks.findIndex(t => t.id === result.id);
+        if (index !== -1) {
+          this.tasks[index] = result;
+        }
+      }
+    });
   }
 
   deleteTask(task: Task): void {

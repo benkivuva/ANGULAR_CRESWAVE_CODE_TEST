@@ -54,4 +54,21 @@ export class TaskTableComponent implements OnInit {
       console.error('Task id is undefined.');
     }
   }
+  toggleTaskStatus(task: Task): void {
+    if (task.status === 'Incomplete') {
+      task.status = 'In Progress';
+    } else if (task.status === 'In Progress') {
+      task.status = 'Complete';
+    } else if (task.status === 'Complete') {
+      task.status = 'Incomplete';
+    }
+
+    this.taskService.updateTask(task).subscribe(updatedTask => {
+      // Update task in the list
+      const index = this.tasks.findIndex(t => t.id === updatedTask.id);
+      if (index !== -1) {
+        this.tasks[index] = updatedTask;
+      }
+    });
+  }
 }

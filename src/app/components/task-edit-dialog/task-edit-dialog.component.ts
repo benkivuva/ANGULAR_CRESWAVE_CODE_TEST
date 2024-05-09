@@ -26,4 +26,8 @@ export class TaskEditDialogComponent {
   cancelEdit(): void {
     this.dialogRef.close();
   }
+
+  toggleStatus(status: string): void {
+    this.task.status = status;
+  }
 }

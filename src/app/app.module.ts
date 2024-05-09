@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TaskEditDialogModule } from './components/task-edit-dialog/task-edit-dialog.module';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         AppRoutingModule,
         MatIconModule,
         MatTableModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        TaskEditDialogModule
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Task } from './task.model';
 
 @Injectable({
@@ -15,9 +16,16 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiUrl);
   }
 
-  getTask(id: number): Observable<Task> {
+  getTaskDetails(id: number): Observable<Task> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Task>(url);
+    console.log('Fetching task details from:', url);
+    return this.http.get<Task>(url).pipe(
+      tap(task => console.log('Task details received:', task)),
+      catchError(error => {
+        console.error('Error fetching task details:', error);
+        throw error;
+      })
+    );
   }
 
   addTask(task: Task): Observable<Task> {

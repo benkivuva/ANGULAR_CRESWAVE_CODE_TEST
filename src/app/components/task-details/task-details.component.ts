@@ -1,9 +1,10 @@
-// task-details.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TaskService } from '../../task.service';
+import { MatDialog } from '@angular/material/dialog';
 import { Task } from '../../task.model';
+import { TaskService } from '../../task.service';
+import { TaskEditDialogComponent } from '../task-edit-dialog/task-edit-dialog.component';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-task-details',
@@ -12,11 +13,11 @@ import { Task } from '../../task.model';
 })
 export class TaskDetailsComponent implements OnInit {
   task: Task | undefined;
+  editing: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -24,31 +25,34 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   loadTask(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.taskService.getTask(id).subscribe(task => {
+    const taskId = 1; // Set the task ID to 1
+    this.taskService.getTaskDetails(taskId).pipe(
+      catchError(error => {
+        console.error('Error loading task:', error);
+        // Handle error as needed, e.g., display an error message
+        return throwError(error);
+      })
+    ).subscribe(task => {
       this.task = task;
     });
   }
 
   toggleStatus(): void {
-    if (this.task) {
-      this.task.status = this.task.status === 'Complete' ? 'Incomplete' : 'Complete';
-      this.taskService.updateTask(this.task).subscribe(() => {
-        // Task status updated successfully
+    // Toggle task status
+  }
+
+  openEditDialog(): void {
+    if (this.task && this.task.id) {
+      const dialogRef = this.dialog.open(TaskEditDialogComponent, {
+        width: '400px',
+        data: { taskId: this.task.id } // Pass the task ID to the dialog component
       });
-    }
-  }
 
-  editTask(): void {
-    if (this.task) {
-      this.router.navigate(['/tasks', this.task.id, 'edit']);
-    }
-  }
-
-  saveChanges(): void {
-    if (this.task) {
-      this.taskService.updateTask(this.task).subscribe(() => {
-        // Task updated successfully
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          // Update task with edited data
+          this.task = result;
+        }
       });
     }
   }

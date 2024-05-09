@@ -1,0 +1,27 @@
+{
+  "tasks": [
+    { "id": 1, "title": "Complete Math Homework", "description": "Solve exercises 1 to 10 from Chapter 3 in the textbook.", "status": "Incomplete" },
+    { "id": 2, "title": "Read Chapter 5 of History Book", "description": "Read and take notes on Chapter 5 about World War II.", "status": "Incomplete" },
+    { "id": 3, "title": "Write English Essay", "description": "Write a 500-word essay on the theme of friendship in 'Of Mice and Men'.", "status": "Incomplete" },
+    { "id": 4, "title": "Study for Chemistry Test", "description": "Review notes and practice problems for the upcoming chemistry test on chemical reactions.", "status": "Incomplete" },
+    { "id": 5, "title": "Complete Coding Assignment", "description": "Finish coding assignment on implementing data structures in Python.", "status": "Incomplete" },
+    { "id": 6, "title": "Practice Piano", "description": "Practice scales and the new piece 'Fur Elise' for 30 minutes.", "status": "Incomplete" },
+    { "id": 7, "title": "Prepare for Debate", "description": "Gather arguments and evidence for the debate on climate change for tomorrow's class.", "status": "Incomplete" },
+    { "id": 8, "title": "Review Spanish Vocabulary", "description": "Review vocabulary words related to family, food, and daily routines for the Spanish quiz.", "status": "Incomplete" },
+    { "id": 9, "title": "Complete Physics Lab Report", "description": "Write up the lab report for the experiment on Newton's laws of motion conducted last week.", "status": "Incomplete" },
+    { "id": 10, "title": "Prepare Presentation on Shakespeare", "description": "Prepare a PowerPoint presentation on the life and works of William Shakespeare for English class.", "status": "Incomplete" },
+    { "id": 11, "title": "Attend Student Council Meeting", "description": "Attend the weekly meeting of the student council to discuss upcoming events and initiatives.", "status": "Incomplete" },
+    { "id": 12, "title": "Review Biology Notes", "description": "Review notes on cell biology and genetics for the upcoming biology quiz.", "status": "Incomplete" },
+    { "id": 13, "title": "Practice Basketball Skills", "description": "Practice dribbling, shooting, and passing for 1 hour at the basketball court.", "status": "Incomplete" },
+    { "id": 14, "title": "Complete Art Project", "description": "Finish painting project on impressionist art movements for art class.", "status": "Incomplete" },
+    { "id": 15, "title": "Study for History Test", "description": "Review key events, dates, and figures for the history test on the American Revolution.", "status": "Incomplete" },
+    { "id": 16, "title": "Attend Math Tutoring Session", "description": "Attend the after-school tutoring session for extra help with algebra.", "status": "Incomplete" },
+    { "id": 17, "title": "Read Literature Assignment", "description": "Read the assigned short story 'The Lottery' and answer the comprehension questions.", "status": "Incomplete" },
+    { "id": 18, "title": "Prepare Chemistry Experiment", "description": "Gather materials and prepare for the chemistry experiment on titration.", "status": "Incomplete" },
+    { "id": 19, "title": "Practice Violin", "description": "Practice scales and the new piece 'Canon in D' for 45 minutes.", "status": "Incomplete" },
+    { "id": 20, "title": "Complete Computer Science Project", "description": "Finish coding project on implementing a simple web application using HTML, CSS, and JavaScript.", "status": "Incomplete" },
+    { "id": 21, "title": "Attend Drama Club Rehearsal", "description": "Attend rehearsal for the school play and practice lines for the assigned role.", "status": "Incomplete" },
+    { "id": 22, "title": "Study for SAT", "description": "Review vocabulary and practice math problems for the upcoming SAT exam.", "status": "Incomplete" }
+  ]
+}
+

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../task.service';
-import { Task } from '../../task.model';
 import { MatDialog } from '@angular/material/dialog';
+import { Task } from '../../task.model';
+import { TaskService } from '../../task.service';
 import { TaskEditDialogComponent } from '../task-edit-dialog/task-edit-dialog.component';
 
 @Component({
@@ -16,11 +16,11 @@ export class TaskTableComponent implements OnInit {
   constructor(private taskService: TaskService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.loadTasks();
+    this.loadTasks(1);
   }
 
-  loadTasks(): void {
-    this.taskService.getTasks().subscribe(tasks => {
+  loadTasks(page: number): void {
+    this.taskService.getTasks(page).subscribe(tasks => {
       this.tasks = tasks;
     });
   }
@@ -31,13 +31,10 @@ export class TaskTableComponent implements OnInit {
       data: { task }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Update the task if changes were made
-        const index = this.tasks.findIndex(t => t.id === result.id);
-        if (index !== -1) {
-          this.tasks[index] = result;
-        }
+    dialogRef.componentInstance.taskSaved.subscribe((savedTask: Task) => {
+      const index = this.tasks.findIndex(t => t.id === savedTask.id);
+      if (index !== -1) {
+        this.tasks[index] = savedTask;
       }
     });
   }
@@ -54,6 +51,7 @@ export class TaskTableComponent implements OnInit {
       console.error('Task id is undefined.');
     }
   }
+
   toggleTaskStatus(task: Task): void {
     if (task.status === 'Incomplete') {
       task.status = 'In Progress';

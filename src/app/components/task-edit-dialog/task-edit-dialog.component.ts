@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task } from '../../task.model';
 
@@ -9,6 +9,7 @@ import { Task } from '../../task.model';
 })
 export class TaskEditDialogComponent {
   task: Task;
+  @Output() taskSaved = new EventEmitter<Task>();
 
   constructor(
     public dialogRef: MatDialogRef<TaskEditDialogComponent>,
@@ -21,6 +22,8 @@ export class TaskEditDialogComponent {
   saveChanges(): void {
     // Save changes to the task
     this.dialogRef.close(this.task);
+    // Emit event to notify that task is saved
+    this.taskSaved.emit(this.task);
   }
 
   cancelEdit(): void {

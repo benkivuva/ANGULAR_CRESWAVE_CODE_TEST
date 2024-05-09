@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './mock-data';
-
+import { InMemoryDataService } from './in-memory-data.service';
 import { AppComponent } from './app.component';
 import { TaskTableComponent } from './components/task-table/task-table.component';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';

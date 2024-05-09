@@ -16,11 +16,11 @@ export class TaskTableComponent implements OnInit {
   constructor(private taskService: TaskService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.loadTasks(1);
+    this.loadTasks();
   }
 
-  loadTasks(page: number): void {
-    this.taskService.getTasks(page).subscribe(tasks => {
+  loadTasks(): void {
+    this.taskService.getTasks().subscribe(tasks => {
       this.tasks = tasks;
     });
   }

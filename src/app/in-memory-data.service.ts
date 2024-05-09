@@ -1,4 +1,10 @@
-export class InMemoryDataService {
+import { Injectable } from '@angular/core';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class InMemoryDataService implements InMemoryDbService {
     createDb() {
         const tasks = [
             { id: 1, title: 'Build a RESTful API with Node.js', description: 'Create a RESTful API using Express.js for a web application.', status: 'Incomplete' },
@@ -10,4 +16,4 @@ export class InMemoryDataService {
         ];
         return { tasks };
     }
-}  
+}

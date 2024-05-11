@@ -21,7 +21,8 @@ import { TaskAddComponent } from './components/task-add/task-add.component';
         AppComponent,
         TaskTableComponent,
         TaskDetailsComponent,
-        TaskFormComponent
+        TaskFormComponent,
+        TaskAddComponent
     ],
     imports: [
         BrowserModule,
@@ -33,8 +34,7 @@ import { TaskAddComponent } from './components/task-add/task-add.component';
         MatIconModule,
         MatTableModule,
         MatFormFieldModule,
-        TaskEditDialogModule,
-        TaskAddComponent
+        TaskEditDialogModule
     ],
     providers: [],
     bootstrap: [AppComponent]

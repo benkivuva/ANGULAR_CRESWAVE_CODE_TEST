@@ -1,0 +1,13 @@
+<form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput placeholder="Title" name="title" [ngModel]="task?.title" (ngModelChange)="updateTitle($event)"
+            required>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput placeholder="Description" name="description" [ngModel]="task?.description"
+            (ngModelChange)="updateDescription($event)" required></textarea>
+    </mat-form-field>
+    <mat-checkbox *ngIf="task" name="status" [ngModel]="task.status"
+        (ngModelChange)="updateStatus($event)">Complete</mat-checkbox>
+    <button mat-raised-button type="submit" color="primary">Save</button>
+</form>

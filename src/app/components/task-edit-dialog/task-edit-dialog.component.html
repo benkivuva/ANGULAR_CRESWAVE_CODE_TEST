@@ -1,0 +1,22 @@
+<h1>Edit Task</h1>
+<form (submit)="saveChanges()" #editForm="ngForm">
+    <div>
+        <label>Title:</label>
+        <input type="text" [(ngModel)]="task.title" name="title" required>
+    </div>
+    <div>
+        <label>Description:</label>
+        <textarea [(ngModel)]="task.description" name="description" required></textarea>
+    </div>
+    <div>
+        <label>Status:</label>
+        <button type="button" (click)="toggleStatus('Incomplete')"
+            [ngClass]="{'active': task.status === 'Incomplete'}">Incomplete</button>
+        <button type="button" (click)="toggleStatus('In Progress')"
+            [ngClass]="{'active': task.status === 'In Progress'}">In Progress</button>
+        <button type="button" (click)="toggleStatus('Complete')"
+            [ngClass]="{'active': task.status === 'Complete'}">Complete</button>
+    </div>
+    <button type="submit" [disabled]="editForm.invalid">Save</button>
+    <button type="button" (click)="cancelEdit()">Cancel</button>
+</form>
